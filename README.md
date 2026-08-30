@@ -39,6 +39,31 @@ npm run android:apk
 
 The new file is `android/app/build/outputs/apk/debug/app-debug.apk`.
 
+## iOS (needs a Mac)
+
+This Linux environment cannot compile an `.ipa`. Apple’s toolchain (Xcode) only runs on macOS. The Xcode project is in [`ios/`](./ios/) so you can build on a Mac and install to an iPhone.
+
+On a Mac with Xcode 16+ and CocoaPods/SPM available:
+
+```bash
+git clone https://github.com/pwscho/VaultApp2.0.git
+cd VaultApp2.0
+npm install
+npm run ios:prepare
+npx cap open ios
+```
+
+In Xcode:
+
+1. Select the **App** target → **Signing & Capabilities**.
+2. Choose your Team (a free Apple ID works for your own device; App Store needs a paid developer account).
+3. Connect the iPhone, pick it as the run destination, and click Run.
+4. On the phone, trust the developer under **Settings → General → VPN & Device Management**.
+
+The app switcher is covered with a blank view so vault contents are not snapshotted. Encryption export compliance is declared in `Info.plist` (`ITSAppUsesNonExemptEncryption`).
+
+There is no prebuilt iOS file in `releases/` because it cannot be signed here.
+
 ## What you can do
 
 - Create a vault with a confirmed master password (12+ characters)
