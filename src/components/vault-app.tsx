@@ -40,7 +40,11 @@ export function VaultApp() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" render={<Link href="/security" />}>
+          <Button
+            variant="outline"
+            nativeButton={false}
+            render={<Link href="/security" />}
+          >
             Security
           </Button>
           <Button variant="outline" onClick={() => setSettingsOpen(true)}>

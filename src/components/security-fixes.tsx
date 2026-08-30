@@ -30,8 +30,14 @@ export function SecurityFixes() {
           at <code className="rounded bg-muted px-1 py-0.5 text-xs">233e896</code>.
         </p>
         <div className="flex flex-wrap gap-2">
-          <Button render={<Link href="/" />}>Back to vault</Button>
-          <Button variant="outline" render={<Link href="/audit" />}>
+          <Button nativeButton={false} render={<Link href="/" />}>
+            Back to vault
+          </Button>
+          <Button
+            variant="outline"
+            nativeButton={false}
+            render={<Link href="/audit" />}
+          >
             V1 audit report
           </Button>
           <Button
