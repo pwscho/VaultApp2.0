@@ -1,5 +1,9 @@
 # VaultApp security audit
 
+**VaultApp 2.0** in this repository implements the remediations below. Use `/` for the new vault and `/security` for a finding-by-finding map. The rest of this document is the original review of V1.
+
+---
+
 **Target:** [pwscho/VaultApp](https://github.com/pwscho/VaultApp)  
 **Commit:** `233e89689f2a2423dcfe1b5f8b5679bd977ea89a` (13 March 2026)  
 **Reviewed:** 30 August 2026  

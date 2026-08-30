@@ -1,9 +1,9 @@
-import { AuditReport } from "@/components/audit-report"
+import { VaultApp } from "@/components/vault-app"
 
 export default function Home() {
   return (
     <main className="flex-1">
-      <AuditReport />
+      <VaultApp />
     </main>
   )
 }

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import {
   auditMeta,
   countBySeverity,
@@ -62,8 +63,20 @@ export function AuditReport() {
           </Badge>
         </div>
         <div className="space-y-3">
+          <p className="text-sm">
+            <Link href="/" className="text-primary underline-offset-4 hover:underline">
+              Open VaultApp 2.0
+            </Link>
+            {" · "}
+            <Link
+              href="/security"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              V2 remediations
+            </Link>
+          </p>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            VaultApp security audit
+            VaultApp V1 security audit
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {auditMeta.overallSummary}

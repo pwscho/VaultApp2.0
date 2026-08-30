@@ -1,6 +1,6 @@
 {
-  "name": "vaultapp-security-audit",
-  "version": "1.0.0",
+  "name": "vaultapp",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --port 43147 --hostname 127.0.0.1",

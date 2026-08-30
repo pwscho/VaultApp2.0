@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { Providers } from "@/app/providers"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -13,9 +14,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "VaultApp security audit",
+  title: "VaultApp 2.0",
   description:
-    "Static security review of pwscho/VaultApp: AES-GCM vault format, key derivation, session handling, and UI exposure of secrets.",
+    "Local encrypted password vault. AES-256-GCM, 600,000 PBKDF2 iterations, auto-lock, and no server.",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
