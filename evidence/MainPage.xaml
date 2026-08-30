@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="VaultApp.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:VaultApp"
+    Title="Vault">
+
+    <!-- Resources -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <local:SelectedColorConverter x:Key="SelectedColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <!-- Layout: Grid ensures scrollbars work -->
+    <Grid RowDefinitions="Auto,*" Padding="20" RowSpacing="12">
+
+        <!-- Header toolbar -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Add Entry" Clicked="OnAddEntry" />
+            <Button Text="Delete Entry" Clicked="OnDeleteEntry" />
+            <Button Text="Change Password" Clicked="OnChangePassword" />
+        </HorizontalStackLayout>
+
+        <!-- Scrollable vault entries -->
+        <CollectionView x:Name="EntriesView"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectionChanged="OnEntrySelected">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <!-- Row container -->
+                    <Grid Padding="3,6"
+      ColumnDefinitions="2*,2*,2*,Auto"
+      BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectedColorConverter}}">
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="2"
+                              Tapped="OnEntryDoubleTapped" />
+                        </Grid.GestureRecognizers>
+
+                        <!-- DISPLAY MODE -->
+                        <Label Text="{Binding Title}"
+           FontSize="12"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <Label Text="{Binding Username}"
+           FontSize="12"
+           Grid.Column="1"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <Label Text="{Binding Password}"
+           FontSize="12"
+           Grid.Column="2"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <!-- EDIT MODE -->
+                        <Entry Text="{Binding Title}"
+           FontSize="12"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing}" />
+
+                        <Entry Text="{Binding Username}"
+           FontSize="12"
+           Grid.Column="1"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing}" />
+
+                        <Entry Text="{Binding Password}"
+           FontSize="12"
+           Grid.Column="2"
+           VerticalOptions="Center"
+           IsVisible="{Binding IsEditing}" />
+
+                        <!-- Save button -->
+                        <Button Text="Save"
+            Grid.Column="3"
+            VerticalOptions="Center"
+            IsVisible="{Binding IsEditing}"
+            CommandParameter="{Binding}"
+            Clicked="OnSaveEntry" />
+
+                    </Grid>
+
+
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
+

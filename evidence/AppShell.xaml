@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="VaultApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:VaultApp.Pages"
+    FlyoutBehavior="Disabled">
+
+    <!-- UnlockPage is the FIRST screen -->
+    <ShellContent
+        Route="unlock"
+        Title="Unlock"
+        ContentTemplate="{DataTemplate pages:UnlockPage}" />
+
+    <!-- MainPage is available for navigation AFTER unlocking -->
+    <ShellContent
+        Route="main"
+        Title="Vault"
+        ContentTemplate="{DataTemplate pages:MainPage}" />
+
+</Shell>
