@@ -15,8 +15,29 @@ Open [http://127.0.0.1:43147](http://127.0.0.1:43147).
 
 ```bash
 npm run build
-npm start
 ```
+
+`npm run build` writes a static site to `out/` (no Node server required at runtime).
+
+## Android APK (no web server)
+
+A debug APK is in [`releases/VaultApp-2.0-android-debug.apk`](./releases/VaultApp-2.0-android-debug.apk). On GitHub, open that file and click **Download raw file**.
+
+On the phone:
+
+1. Copy the APK to the device (USB, Drive, or the GitHub download).
+2. Open it and allow **Install unknown apps** for that source if Android asks.
+3. Launch **VaultApp 2.0**. The vault stays in the app’s local storage. There is no server.
+
+This build is **debug-signed** (fine for personal sideload, not for Play Store). Recents/screenshots are blocked with `FLAG_SECURE`. Android backup is off.
+
+To rebuild after changing the web app (needs the Android SDK):
+
+```bash
+npm run android:apk
+```
+
+The new file is `android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ## What you can do
 
