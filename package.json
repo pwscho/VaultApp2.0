@@ -9,7 +9,11 @@
     "lint": "eslint",
     "cap:sync": "next build && cap sync",
     "android:apk": "next build && cap sync android && cd android && ./gradlew assembleDebug",
-    "ios:prepare": "next build && cap sync ios"
+    "ios:prepare": "next build && cap sync ios",
+    "electron:prepare": "next build && cap sync @capawesome/capacitor-electron",
+    "electron:pack": "npm run electron:prepare && cd electron && npm run pack",
+    "windows:release": "npm run electron:prepare && cd electron && npm run pack -- --win portable --x64",
+    "postinstall": "cd electron && npm ci"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -18,6 +22,7 @@
     "@capacitor/cli": "^8.5.0",
     "@capacitor/core": "^8.5.0",
     "@capacitor/ios": "^8.5.0",
+    "@capawesome/capacitor-electron": "^0.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.37.0",

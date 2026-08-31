@@ -20,6 +20,13 @@
 # production
 /build
 
+# capacitor electron
+/electron/dist/
+/electron/build/
+/electron/vendor/
+/electron/app/
+/electron/generated/
+
 # misc
 .DS_Store
 *.pem

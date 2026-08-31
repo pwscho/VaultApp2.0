@@ -64,6 +64,26 @@ The app switcher is covered with a blank view so vault contents are not snapshot
 
 There is no prebuilt iOS file in `releases/` because it cannot be signed here.
 
+## Windows desktop (no web server)
+
+A portable x64 build is in [`releases/VaultApp-2.0-windows-portable-x64.exe`](./releases/VaultApp-2.0-windows-portable-x64.exe). On GitHub, open that file and click **Download raw file**.
+
+On Windows:
+
+1. Download the `.exe` (or copy it from a USB drive).
+2. Run **VaultApp 2.0**. Windows SmartScreen may warn because the binary is unsigned — choose **More info → Run anyway** for personal use.
+3. The vault stays in the app's local storage. There is no server.
+
+This is a **portable** build (no installer). You can move the `.exe` anywhere; it stores data under your Windows user profile like any Electron app.
+
+The desktop app uses the same lock-on-idle and lock-when-hidden behavior as the browser build. To rebuild after changing the web app:
+
+```bash
+npm run windows:release
+```
+
+The new portable file is `electron/dist/VaultApp-2.0-windows-portable-x64.exe`. An NSIS installer needs Wine on Linux or a Windows machine to produce.
+
 ## What you can do
 
 - Create a vault with a confirmed master password (12+ characters)
