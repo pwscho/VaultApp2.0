@@ -9,14 +9,21 @@ type StoreKey = "current" | "backup"
 function openDb(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION)
+    const timeout = window.setTimeout(() => {
+      reject(new Error("Vault storage did not open in time."))
+    }, 10_000)
+    const finish = (work: () => void) => {
+      window.clearTimeout(timeout)
+      work()
+    }
     request.onupgradeneeded = () => {
       const db = request.result
       if (!db.objectStoreNames.contains(STORE)) {
         db.createObjectStore(STORE)
       }
     }
-    request.onsuccess = () => resolve(request.result)
-    request.onerror = () => reject(request.error)
+    request.onsuccess = () => finish(() => resolve(request.result))
+    request.onerror = () => finish(() => reject(request.error))
   })
 }
 

@@ -10,7 +10,7 @@
     "cap:sync": "next build && cap sync",
     "android:apk": "next build && cap sync android && cd android && ./gradlew assembleDebug",
     "ios:prepare": "next build && cap sync ios",
-    "electron:prepare": "next build && cap sync @capawesome/capacitor-electron",
+    "electron:prepare": "next build && node scripts/strip-crossorigin.mjs && cap sync @capawesome/capacitor-electron",
     "electron:pack": "npm run electron:prepare && cd electron && npm run pack",
     "windows:release": "npm run electron:prepare && cd electron && npm run pack -- --win portable --x64",
     "postinstall": "cd electron && npm ci"
